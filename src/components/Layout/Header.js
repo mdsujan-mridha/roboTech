@@ -4,6 +4,7 @@ import { FaUserAlt } from "react-icons/fa"
 import { FiSearch } from "react-icons/fi";
 import { BsCartPlus } from "react-icons/bs";
 import logo from "../../images/logo.png";
+import "./Header.css";
 const Header = () => {
     return (
         <ReactNavbar
@@ -14,18 +15,16 @@ const Header = () => {
             logoHoverSize="10px"
             logoHoverColor="#eb4034"
             burgerColor="white"
+            
             link1Text="Home"
             link2Text="Products"
             link3Text="Contact"
             link4Text="About"
-            link5Text="Blog"
             link1Url="/"
             link2Url="/products"
             link3Url="/contact"
             link4Url="/about"
-            link5Url="/blog"
             link1Size="1.3vmax"
-            // link1Color: "rgba(35, 35, 35,0.8)",
             link1Color="#FFFFFF"
             link5Color="#FFFFFF"
             nav1justifyContent="flex-end"
@@ -42,7 +41,6 @@ const Header = () => {
             profileIconColorHover="#eb4034"
             searchIconColorHover="#eb4034"
             cartIconColorHover="#eb4034"
-
             cartIconMargin="1vmax"
             cartIcon={true}
             CartIconElement={BsCartPlus}
