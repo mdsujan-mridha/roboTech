@@ -24,8 +24,11 @@ dotenv.config({ path: "/config/config.env" });
 
 // user api endpoint 
 const user = require("./routes/userRoutes");
-
+// product routes 
+const product = require("./routes/productRoutes");
 app.use("/api/v1", user);
+// products
+app.use("/api/v1", product);
 
 app.use(errorMiddleware);
 module.exports = app;
