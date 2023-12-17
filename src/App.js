@@ -3,7 +3,7 @@ import Header from "./components/Layout/Header";
 import Home from "./components/Home/Home";
 import 'swiper/css';
 import Footer from "./components/Layout/Footer";
-
+import Products from "./components/Products/Products";
 function App() {
   return (
     <>
@@ -11,6 +11,7 @@ function App() {
         <Header />
         <Routes>
           <Route path="/" element={<Home />}> </Route>
+          <Route path="/products" element={<Products />}> </Route>
         </Routes>
         <Footer />
       </Router>

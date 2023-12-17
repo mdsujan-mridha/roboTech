@@ -70,7 +70,8 @@ const Supplier = () => {
             navigation={true}
             modules={[Navigation]}
 
-            className="mySwiper my-32"
+            className="mySwiper my-32 z-50"
+            style={{zIndex:99 }}
             breakpoints={{
                 360: {
                     slidesPerView: 3, // Show 2 slides on screens >=576px wide

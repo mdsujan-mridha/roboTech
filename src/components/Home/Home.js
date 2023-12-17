@@ -17,18 +17,22 @@ const Home = () => {
                     <h1 className='text-white font-bold text-2xl'> Featured Category </h1>
                     <p className='text-white font-bold opacity-70'> Get Your Desired Product from Featured Category! </p>
                 </div>
-                <div className='w-80 h-80 bg-blue-700 absolute top-10 bottom-auto left-auto right-0 blur-3xl opacity-30 rounded-md'></div>
+                <div className='w-80 h-80 bg-blue-700 absolute top-10 bottom-auto left-auto right-0 blur-3xl opacity-50 rounded-md'></div>
                 <FeaturesCategory />
                 <OfferProducts category='Offer products' />
 
             </div>
             <div className='px-12 relative'>
                 {/* Blob shape positioned behind the OfferProducts */}
-                <div className='w-80 h-80 bg-blue-700 absolute top-[-100px] bottom-auto left-0 right-auto blur-3xl opacity-30 rounded-md z-10'></div>
+                <div className='w-80 h-80 bg-blue-700 absolute top-[-100px] bottom-auto left-0 right-auto blur-3xl opacity-50 rounded-md z-10'></div>
 
                 {/* OfferProducts components */}
                 <OfferProducts category='New products' />
                 <OfferProducts category='Featured Products' />
+
+            </div>
+            <div className='px-12 relative'>
+                <div className='w-80 h-80 bg-red-500 absolute top-[-150px] bottom-auto left-auto right-0 blur-3xl opacity-20 rounded-md z-10'></div>
                 <Supplier />
                 <RobotImg />
                 <PolicyProcess />

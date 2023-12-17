@@ -55,6 +55,11 @@ export const categoryList = [
         category: "Robotic Arms",
         image: categoryImg07
     },
+    {
+        _id: 9,
+        category: "Robotic Arms",
+        image: categoryImg02
+    },
 ]
 
 
