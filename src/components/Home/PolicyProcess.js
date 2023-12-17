@@ -103,8 +103,8 @@ const PolicyProcess = () => {
                         <SwiperSlide
                             key={item?._id}
                         >
-                            <div className='flex flex-col justify-center items-center gap-2 w-full lg:w-44 h-auto'>
-                            <img src={item?.img} alt={item?.name} />
+                            <div className='flex flex-col justify-center items-center gap-2  lg:w-34 h-auto'>
+                            <img src={item?.img} alt={item?.name} className='w-full'/>
                             <h3 className='text-white font-semibold text-sm'> {item?.title} </h3>
                             </div>
                         </SwiperSlide>
