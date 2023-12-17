@@ -6,15 +6,32 @@
 
   @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
+:root{
+ --primary:#141414;
+ --secondary:#222222;
+
+}
+
 body {
   margin: 0;
   font-family: 'Roboto', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: #141414 !important;
+  color: #fff;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.vector-graphics{
+  filter: drop-shadow(0 40px 10px rgba(0, 0, 0, 0.3));
+  animation: vectorAnimation 1s infinite ease-in-out alternate;
+}
+@keyframes vectorAnimation {
+  to {
+    transform: translateY(-15px);
+  }
 }
