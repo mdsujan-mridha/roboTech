@@ -6,10 +6,14 @@ import OfferProducts from './OfferProducts';
 import Supplier from './Suplier';
 import RobotImg from './RobotImg';
 import PolicyProcess from './PolicyProcess';
+import { Helmet } from 'react-helmet';
 
 const Home = () => {
     return (
         <>
+            <Helmet>
+                <title>Robotech | Home</title>
+            </Helmet>
             <Hero />
             <Promotion />
             <div className='px-12 relative'>
