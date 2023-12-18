@@ -1,5 +1,6 @@
 import React from 'react';
 import { Rating, styled } from '@mui/material';
+import { Link } from 'react-router-dom';
 
 // const StyledRating = styled(Rating)({
 //     color:'#F88D11',
@@ -17,7 +18,7 @@ const StyledRating = styled(Rating)(({ theme }) => ({
 const ProductCard = ({ product }) => {
     return (
         <>
-            <div className=' w-80 bg-primary rounded-md flex flex-col justify-center items-center gap-5 z-50' style={{ height: 400, backgroundColor: 'var(--secondary)' }}>
+            <div className=' w-80 bg-primary rounded-md flex flex-col justify-center items-center gap-5 z-50 hover:shadow-md hover:shadow-gray-700  cursor-pointer' style={{ height: 400, backgroundColor: 'var(--secondary)' }}>
                 <img src={product?.image} alt="" className='w-64 h-56 flex justify-center items-start' />
                 <div className='px-12'>
                     <h1 className='text-white text-lg font-bold'> {product?.name} </h1>

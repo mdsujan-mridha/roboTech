@@ -70,34 +70,79 @@ export const products = [
         name: "Arduino Uno R3 (Original)",
         price: '2230',
         rating: '3.5',
-        image: productImg01
+        image: productImg01,
+        specifications: [
+            { "Model Number": "MK2K3HN/A" },
+            { "Model Name": "DEV-00008" },
+            { "Connectivity": "WIFI Only" },
+            { "Additional Features": "RESET Circuitry, 8 LEDs Interfacing, Buzzer Interfacing, Infrared Interfacing,1-WireCommunication Interfacing,Power Switch,Vcc-GND power pin." },
+        ]
     },
     {
         _id: 2,
         name: "Arduino Uno R3 (Original)",
         price: '1600',
         rating: '3.5',
-        image: productImg02
+        image: productImg02,
+        specifications: [
+            { "Model Number": "MK2K3HN/A" },
+            { "Model Name": "DEV-00008" },
+            { "Connectivity": "WIFI Only" },
+            { "Additional Features": "RESET Circuitry, 8 LEDs Interfacing, Buzzer Interfacing, Infrared Interfacing,1-WireCommunication Interfacing,Power Switch,Vcc-GND power pin." },
+        ],
+        description: [
+            "ZIF Socket for PIC16F877A and PIC18F452, with accessible I/O, grouped by PORT.",
+            "On board Programmer.",
+            "USB connector, connection with PC.",
+            "Crystal Oscillator (Default 16MHz). It’s replaceable.",
+            "External Supply Socket (5V).",
+            "SPI Pinout.",
+            "USART Pinout.",
+            "Seven Segment Display Interfacing.",
+            "LCD Interfacing Connector.",
+            "LCD Contrast.",
+            "ADC Interfacing.",
+            "Push Button Interfacing.",
+            "I/O Expander."
+        ]
     },
     {
         _id: 3,
         name: "Arduino Uno R3 (Original)",
         price: '2230',
         rating: '5.0',
-        image: productImg03
+        image: productImg03,
+        specifications: [
+            { "Model Number": "MK2K3HN/A" },
+            { "Model Name": "DEV-00008" },
+            { "Connectivity": "WIFI Only" },
+            { "Additional Features": "RESET Circuitry, 8 LEDs Interfacing, Buzzer Interfacing, Infrared Interfacing,1-WireCommunication Interfacing,Power Switch,Vcc-GND power pin." },
+        ]
     },
     {
         _id: 4,
         name: "Arduino Uno R3 (Original)",
         price: '2000',
         rating: '4.5',
-        image: productImg04
+        image: productImg04,
+        specifications: [
+            { "Model Number": "MK2K3HN/A" },
+            { "Model Name": "DEV-00008" },
+            { "Connectivity": "WIFI Only" },
+            { "Additional Features": "RESET Circuitry, 8 LEDs Interfacing, Buzzer Interfacing, Infrared Interfacing,1-WireCommunication Interfacing,Power Switch,Vcc-GND power pin." },
+        ]
     },
     {
         _id: 5,
         name: "Arduino Uno R3 (Original)",
         price: '2030',
         rating: '4.5',
-        image: productImg05
+        image: productImg05,
+        specifications: [
+            { "Model Number": "MK2K3HN/A" },
+            { "Model Name": "DEV-00008" },
+            { "Connectivity": "WIFI Only" },
+            { "Additional Features": "RESET Circuitry, 8 LEDs Interfacing, Buzzer Interfacing, Infrared Interfacing,1-WireCommunication Interfacing,Power Switch,Vcc-GND power pin." },
+        ]
     },
 ]
