@@ -3,6 +3,9 @@ import { Box, Slider } from '@mui/material';
 import React, { useState } from 'react';
 import { products } from '../../utils/FakeData';
 import ProductCard from '../../utils/ProductCard';
+import { useLocation } from 'react-router-dom';
+import MetaData from '../Layout/MetaData';
+
 
 const categories = [
     "Robotic Toys",
@@ -16,17 +19,21 @@ const categories = [
 
 const Products = () => {
     const [value, setValue] = useState([20, 3000]);
-    const[rating,setRating] = useState([0,5]);
-
+    const [rating, setRating] = useState([0, 5]);
+     
+    const location = useLocation();
+    console.log(location);
+    
     const handleChange = (event, newValue) => {
         setValue(newValue);
     };
-       
-    const handleRatingChange = (e,newValue)=>{
+
+    const handleRatingChange = (e, newValue) => {
         setRating(newValue)
     }
     return (
         <>
+          <MetaData title="Product | RobotTech"/>
             <div className='min-h-screen' style={{ backgroundColor: 'var(--secondary)' }}>
                 <div className='px-12 flex w-full pt-36'>
                     <input
@@ -37,10 +44,10 @@ const Products = () => {
                         className='w-full h-14 bg-transparent border-2 rounded-full outline-none px-10 text-white font-bold text-sm' />
                     <button> <Search sx={{ color: 'orange', fontSize: '50px', marginLeft: '-70px' }} /></button>
                 </div>
-                {/* filter div */}
-                <div className='flex justify-between  gap-5 mt-10 px-12'>
-                    <div className='w-full lg:w-1/5 min-h-screen rounded-md pb-5' style={{ backgroundColor: 'var(--primary)' }}>
-                      {/* filter by category */}
+                {/* filter product div */}
+                <div className='flex justify-between flex-col-reverse md:flex-row lg:flex-row gap-5 mt-10 px-12'>
+                    <div className='w-full md:w-3/12 lg:w-1/5 min-h-screen rounded-md pb-5' style={{ backgroundColor: 'var(--primary)' }}>
+                        {/* filter by category */}
                         <div className='pt-5 pb-2 px-5'>
                             <h1 className='text-white font-bold text-xl py-3'> Filter by Category </h1>
                             <hr style={{ color: 'gray', backgroundColor: 'gray', height: 2, border: 'none' }} />
@@ -55,7 +62,7 @@ const Products = () => {
                                 }
                             </div>
                         </div>
-                      {/* filter by price  */}
+                        {/* filter by price  */}
                         <div className='px-5'>
                             <h1 className='text-white font-bold text-xl py-3'> Filter by Price </h1>
                             <hr style={{ color: 'gray', backgroundColor: 'gray', height: 2, border: 'none' }} />
@@ -124,21 +131,22 @@ const Products = () => {
                         </div>
                     </div>
                     {/* product div  */}
-                    <div className='w-full min-h-screen lg:w-4/5 rounded-md pb-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 px-12 pt-5' style={{ backgroundColor: 'var(--primary)' }}>
+                    <div className='w-full min-h-screen lg:w-4/5 rounded-md pb-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 px-3 lg:px-12 pt-5' style={{ backgroundColor: 'var(--primary)' }}>
                         {
                             products &&
-                            products.map((product) =>(
+                            products.map((product) => (
                                 <ProductCard
-                                key={product?._id}
-                                product={product}
+                                    key={product?._id}
+                                    product={product}
                                 >
 
                                 </ProductCard>
                             ))
-                            
+
                         }
                     </div>
                 </div>
+                <div className='my-5 h-56 w-full'></div>
             </div>
         </>
     );

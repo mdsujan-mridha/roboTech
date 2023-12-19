@@ -26,9 +26,13 @@ dotenv.config({ path: "/config/config.env" });
 const user = require("./routes/userRoutes");
 // product routes 
 const product = require("./routes/productRoutes");
+// import order routes 
+const order = require("./routes/orderRoutes");
 app.use("/api/v1", user);
 // products
 app.use("/api/v1", product);
+// order routes 
+app.use("/api/v1",order);
 
 app.use(errorMiddleware);
 module.exports = app;
