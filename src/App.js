@@ -7,11 +7,14 @@ import Products from "./components/Products/Products";
 import Login from "./components/User/Login";
 import Register from "./components/User/Register";
 import ProductsDetails from "./components/Products/ProductDetails";
+import { ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 function App() {
   return (
     <>
       <Router>
         <Header />
+        <ToastContainer />
         <Routes>
           <Route path="/" element={<Home />}> </Route>
           <Route path="/products" element={<Products />}> </Route>

@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Rating, styled } from '@mui/material';
 import { products } from '../../utils/FakeData';
 import { FaTags } from "react-icons/fa";
 import OfferProducts from '../Home/OfferProducts';
 import Reviews from '../../utils/Reviews';
-import promotionImg from "../../images/p-1.jpg"
+import { Check } from '@mui/icons-material';
+import { toast } from 'react-toastify';
 
 const StyledRating = styled(Rating)(({ theme }) => ({
     '& .MuiRating-iconEmpty': {
@@ -19,6 +20,28 @@ const StyledRating = styled(Rating)(({ theme }) => ({
 const product = products.find(p => p._id === 2);
 
 const ProductsDetails = () => {
+
+    const [quantity, setQuantity] = useState(1);
+
+    const increaseQuantity = () => {
+
+        if (product.Stock <= quantity) return;
+        const qty = quantity + 1;
+        setQuantity(qty);
+    }
+    const decreaseQuantity = () => {
+
+        if (1 >= quantity) return;
+        const qty = quantity - 1;
+        setQuantity(qty);
+
+    }
+
+    const addToCartHandler = () => {
+
+        toast.success("Item added to cart");
+    }
+
     return (
         <>
             <div className='pt-20 lg:px-12 mx-auto min-h-screen' style={{ backgroundColor: 'var(--primary)' }}>
@@ -39,11 +62,18 @@ const ProductsDetails = () => {
                         <p className='text-xl'>Price: {product.price} TK</p>
                         <div className="border-b border-gray-500"></div>
                         <div className='py-5 flex gap-2 text-4xl justify-start items-center'>
-                            <button className='py-1 px-4 border-2' type="button">-</button>
-                            <p>1</p>
-                            <button className='py-1 px-4 border-2' type="button">+</button>
+                            <button className='py-1 px-4 border-2' type="button" onClick={decreaseQuantity}>-</button>
+                            <input
+                                type="number"
+                                value={quantity}
+                                readOnly
+                                className='bg-transparent'
+                                style={{ width: 60, height: 45, textAlign: 'center', outline: 'none' }}
+                            />
+                            <button className='py-1 px-4 border-2' type="button" onClick={increaseQuantity}>+</button>
                             <button
                                 className="md:ml-4 px-4 md:px-6 py-2 md:py-3 bg-[#F88D11] text-white text-2xl font-bold rounded-full hover:bg-[#f88c11ec]"
+                                onClick={addToCartHandler}
                             >
                                 Add to cart
                             </button>
@@ -63,12 +93,14 @@ const ProductsDetails = () => {
                         </button>
                     </div>
                 </div>
+
                 <div className='mb-8'>
                     <div className='grid grid-cols-2 gap-4'>
                         <div className='w-full'>
                             <div className='flex gap-2 pl-2 mb-8'>
                                 <button
                                     className="py-2 md:py-3 w-full bg-[#F88D11] text-white text-xl font-semibold rounded-2xl hover:bg-[#f88c11ec]"
+                                    onClick={addToCartHandler}
                                 >
                                     Add to cart
                                 </button>
@@ -79,69 +111,39 @@ const ProductsDetails = () => {
                                 </button>
                             </div>
                         </div>
-                        <div className='pl-2'>
-                            <div className='inline-block mb-2'>
-                                <h2 className='text-3xl font-bold mb-2'>Product Description</h2>
-                                <div className="border-b">
-                                    <li> Lorem, ipsum dolor sit amet consectetur adipisicing elit. Pariatur, iste! </li>
-                                    <li> Lorem, ipsum dolor sit amet consectetur adipisicing elit. Pariatur, iste! </li>
-                                    <li> Lorem, ipsum dolor sit amet consectetur adipisicing elit. Pariatur, iste! </li>
-                                    <li> Lorem, ipsum dolor sit amet consectetur adipisicing elit. Pariatur, iste! </li>
-                                    <li> Lorem, ipsum dolor sit amet consectetur adipisicing elit. Pariatur, iste! </li>
-                                    <li> Lorem, ipsum dolor sit amet consectetur adipisicing elit. Pariatur, iste! </li>
-                                    <li> Lorem, ipsum dolor sit amet consectetur adipisicing elit. Pariatur, iste! </li>
-                                    <li> Lorem, ipsum dolor sit amet consectetur adipisicing elit. Pariatur, iste! </li>
-
-                                </div>
-                            </div>
-                            <div>
-                                <ol className='list-decimal pl-2'>
-                                    {
-                                        product?.description?.map(des => des)?.map((d, i) => <li key={i}>{d}</li>)
-                                    }
-                                </ol>
-                            </div>
-                        </div>
-                    </div>
-                    <div className=''>
-                        <div className='mb-2 flex flex-col lg:flex-row justify-between items-center'>
-
-                            <div className="px-2 ">
-                                <h2 className='text-3xl font-bold mb-2'>Specifications</h2>
-                                <li> Lorem, ipsum dolor sit amet consectetur adipisicing elit. Pariatur, iste! </li>
-                                <li> Lorem, ipsum dolor sit amet consectetur adipisicing elit. Pariatur, iste! </li>
-                                <li> Lorem, ipsum dolor sit amet consectetur adipisicing elit. Pariatur, iste! </li>
-                                <li> Lorem, ipsum dolor sit amet consectetur adipisicing elit. Pariatur, iste! </li>
-                                <li> Lorem, ipsum dolor sit amet consectetur adipisicing elit. Pariatur, iste! </li>
-                                <li> Lorem, ipsum dolor sit amet consectetur adipisicing elit. Pariatur, iste! </li>
-                                <li> Lorem, ipsum dolor sit amet consectetur adipisicing elit. Pariatur, iste! </li>
-                                <li> Lorem, ipsum dolor sit amet consectetur adipisicing elit. Pariatur, iste! </li>
-                            </div>
-                            <div className='flex'>
-                                <img src={promotionImg} alt="promotion" />
-                                <img src={promotionImg} alt="promotion" />
-                            </div>
-                        </div>
-
-                        <table className='min-w-full text-center md:text-left'>
-                            <tbody>
-                                {
-                                    product?.specifications?.map((p, i) => (
-                                        <tr key={i}>
-                                            <td>{Object.keys(p)}</td>
-                                            <td>{p[`${Object.keys(p)}`]}</td>
-                                        </tr>
-                                    ))
-                                }
-                            </tbody>
-                        </table>
                     </div>
                 </div>
+                {/* product description and specification  */}
+
+                <div className='flex flex-col lg:flex-row justify-between items-center'>
+                    <div>
+                        <h1 className="text-4xl font-bold py-5">
+                            <span className="bg-clip-text text-transparent" style={{ backgroundImage: 'linear-gradient(90deg, #667EEA, #764BA2)' }}>
+                                Description
+                            </span>
+                        </h1>
+                        <p><Check> </Check> Lorem ipsum dolor, sit amet consectetur adipisicing elit. In, aut?  </p>
+                        <p><Check> </Check> Lorem ipsum dolor, sit amet consectetur adipisicing elit. In, aut?  </p>
+                        <p><Check> </Check> Lorem ipsum dolor, sit amet consectetur adipisicing elit. In, aut?  </p>
+                        <p><Check> </Check> Lorem ipsum dolor, sit amet consectetur adipisicing elit. In, aut?  </p>
+                        <p><Check> </Check> Lorem ipsum dolor, sit amet consectetur adipisicing elit. In, aut?  </p>
+                    </div>
+                    <div>
+                        <h1 className="text-4xl font-bold py-5">
+                            <span className="bg-clip-text text-transparent" style={{ backgroundImage: 'linear-gradient(90deg, #667EEA, #764BA2)' }}>
+                            Specifications
+                            </span>
+                        </h1>
+                        <p><Check> </Check> Lorem ipsum dolor, sit amet consectetur adipisicing elit. In, aut?  </p>
+                        <p><Check> </Check> Lorem ipsum dolor, sit amet consectetur adipisicing elit. In, aut?  </p>
+                        <p><Check> </Check> Lorem ipsum dolor, sit amet consectetur adipisicing elit. In, aut?  </p>
+                        <p><Check> </Check> Lorem ipsum dolor, sit amet consectetur adipisicing elit. In, aut?  </p>
+                        <p><Check> </Check> Lorem ipsum dolor, sit amet consectetur adipisicing elit. In, aut?  </p>
+                    </div>
+
+
+                </div>
                 <div className=''>
-                    {/* Blob shape positioned behind the OfferProducts */}
-
-
-                    {/* OfferProducts components */}
                     <OfferProducts category='Related Products' />
                 </div>
                 <div>
