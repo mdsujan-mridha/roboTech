@@ -4,6 +4,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { clearErrors, login } from '../../actions/userAction';
 import { useEffect } from 'react';
 import { toast } from 'react-toastify';
+import Loader from '../Layout/Loader';
 
 const Login = () => {
     const dispatch = useDispatch();
@@ -64,16 +65,18 @@ const Login = () => {
                                 onChange={(e) => setLoginPassword(e.target.value)}
                                 placeholder='Enter you password'
                                 className='bg-transparent h-12 w-full border-b-2 rounded-xl outline-none px-5' />
-                            <input
-                                type="submit"
-                                value="Login"
-                                className='h-12 w-full outline-none rounded-full text-white font-bold text-xl cursor-pointer'
-                                style={{
-                                    backgroundImage: 'linear-gradient(to right,  #667EEA,#764BA2)',
-                                    backgroundOrigin: 'border-box',
-                                    backgroundClip: 'content-box, border-box'
-                                }}
-                            />
+                            {
+                                loading ? <Loader></Loader> : (<input
+                                    type="submit"
+                                    value="Login"
+                                    className='h-12 w-full outline-none rounded-full text-white font-bold text-xl cursor-pointer'
+                                    style={{
+                                        backgroundImage: 'linear-gradient(to right,  #667EEA,#764BA2)',
+                                        backgroundOrigin: 'border-box',
+                                        backgroundClip: 'content-box, border-box'
+                                    }}
+                                />)
+                            }
                         </form>
 
                     </div>
