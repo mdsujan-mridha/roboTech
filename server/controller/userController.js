@@ -23,7 +23,7 @@ exports.registerUser = catchAsyncError(async (req, res, next) => {
 });
 //  login 
 exports.loginUser = catchAsyncError(async (req, res, next) => {
-    console.log(req.body);
+    // console.log(req.body);
     const { email, password } = req.body;
     if (!email || !password) {
         return next(new ErrorHandler("Please Enter a valid email and password", 400))
@@ -132,7 +132,7 @@ exports.resetPassword = catchAsyncError(async (req, res, next) => {
 // get logged user details 
 exports.getUserDetails = catchAsyncError(async (req, res, next) => {
     const user = await User.findById(req.user.id);
-    console.log(req.user.id)
+    // console.log(req.user.id)
 
     // if user not found then send a message  
     res.status(200).json({

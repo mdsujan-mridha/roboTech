@@ -1,10 +1,13 @@
 import { Search } from '@mui/icons-material';
 import { Box, Slider } from '@mui/material';
-import React, { useState } from 'react';
-import { products } from '../../utils/FakeData';
+import React, { useEffect, useState } from 'react';
+
 import ProductCard from '../../utils/ProductCard';
-import { useLocation } from 'react-router-dom';
+
 import MetaData from '../Layout/MetaData';
+import { useDispatch, useSelector } from 'react-redux';
+import { getProducts } from '../../actions/productAction';
+import { useParams } from 'react-router-dom';
 
 
 const categories = [
@@ -18,12 +21,23 @@ const categories = [
 ];
 
 const Products = () => {
+    const dispatch = useDispatch();
+    const {trimmedKeyword} = useParams();
+
     const [value, setValue] = useState([20, 3000]);
     const [rating, setRating] = useState([0, 5]);
-     
-    const location = useLocation();
-    console.log(location);
-    
+    const {
+        loading,
+        products,
+        error,
+        productsCount,
+        resultPerPage,
+        filteredProductsCount
+
+
+    } = useSelector((state) => state.products)
+
+
     const handleChange = (event, newValue) => {
         setValue(newValue);
     };
@@ -31,9 +45,15 @@ const Products = () => {
     const handleRatingChange = (e, newValue) => {
         setRating(newValue)
     }
+    // console.log(products);
+
+    useEffect(() => {
+        dispatch(getProducts(trimmedKeyword))
+    }, [dispatch,trimmedKeyword])
+
     return (
         <>
-          <MetaData title="Product | RobotTech"/>
+            <MetaData title="Product | RobotTech" />
             <div className='min-h-screen' style={{ backgroundColor: 'var(--secondary)' }}>
                 <div className='px-12 flex w-full pt-36'>
                     <input
@@ -139,7 +159,6 @@ const Products = () => {
                                     key={product?._id}
                                     product={product}
                                 >
-
                                 </ProductCard>
                             ))
 
