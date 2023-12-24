@@ -171,6 +171,7 @@
 
 /* step  */
 .MuiStepConnector-line {
+    
     display: none !important;
 }
 

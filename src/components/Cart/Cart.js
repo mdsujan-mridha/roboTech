@@ -36,7 +36,7 @@ const Cart = () => {
         dispatch(removeItemsFromCart(id))
     }
     const checkoutHandler = (id) => {
-        navigate("/")
+        navigate("/shipping")
     }
 
 

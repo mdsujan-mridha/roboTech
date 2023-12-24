@@ -1,4 +1,4 @@
-import { ExitToApp, ListAlt, Person, ShoppingCart } from '@mui/icons-material';
+import { Dashboard, ExitToApp, ListAlt, Person, ShoppingCart } from '@mui/icons-material';
 import { Backdrop, SpeedDial, SpeedDialAction } from '@mui/material';
 import React, { Fragment, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -34,13 +34,13 @@ const UserOption = ({ user }) => {
         },
         { icon: <ExitToApp />, name: "Logout", func: logoutUser },
     ];
-    // if(user.role === "admin"){
-    //     options.unshift({
-    //         icon:<Dashboard/>,
-    //         name:"Dashboard",
-    //         func:dashboard
-    //     })
-    // }
+    if(user.role === "admin"){
+        options.unshift({
+            icon:<Dashboard/>,
+            name:"Dashboard",
+            func:dashboard
+        })
+    }
     function dashboard() {
         navigate("/admin/dashboard")
     }

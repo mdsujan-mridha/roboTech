@@ -1,38 +1,17 @@
+import { useSelector } from 'react-redux';
+import { Navigate } from 'react-router-dom';
 
-import React from 'react';
+const ProtectedRoute = ({ children, isAdmin }) => {
 
-import { Navigate, Outlet } from "react-router-dom";
+    const { loading, isAuthenticated, user } = useSelector(state => state.user);
 
-const ProtectedRoute = ({
-    isAuthenticated,
-    children,
-    adminRoute,
-    isAdmin,
-    redirect = "/login",
-    redirectAdmin = "/account",
-
-}) => {
-    if (isAuthenticated === false) {
-        return <Navigate to={redirect} />
-    }
-    if (adminRoute && !isAdmin) {
-        return <Navigate to={redirectAdmin} />
-    }
-    return children ? children : <Outlet />
-}
-
-
-// const ProtectedRoute = () => {
-//     const {isAuthenticated} = useSelector((state) => state.user);
-//     // let auth = {'token':true}
-
-//         if(!isAuthenticated){
-//           return<Navigate to= "/login"/>
-//         }
-//        if(isAuthenticated){
-//         return <Outlet/>
-//        } 
-
-// };
+    return (
+        <>
+            {loading === false && (
+                isAuthenticated === false ? <Navigate to="/login" /> : isAdmin ? user.role !== "admin" ? <Navigate to="/login" /> : children : children
+            )}
+        </>
+    );
+};
 
 export default ProtectedRoute;

@@ -28,11 +28,15 @@ const user = require("./routes/userRoutes");
 const product = require("./routes/productRoutes");
 // import order routes 
 const order = require("./routes/orderRoutes");
+// payment route 
+const payment = require("./routes/paymentRoute");
 app.use("/api/v1", user);
 // products
 app.use("/api/v1", product);
 // order routes 
-app.use("/api/v1",order);
+app.use("/api/v1", order);
+// payment routes 
+app.use("/api/v1", payment)
 
 app.use(errorMiddleware);
 module.exports = app;
