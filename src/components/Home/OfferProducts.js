@@ -1,7 +1,7 @@
 import React, { Fragment, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import ProductCard from '../../utils/ProductCard';
-import { products } from '../../utils/FakeData';
+
 import { useDispatch, useSelector } from 'react-redux';
 import { getProducts } from '../../actions/productAction';
 
@@ -20,7 +20,8 @@ const OfferProducts = ({ category }) => {
 
     } = useSelector((state) => state.products);
     const products = allProducts.slice(0, 5);
-    
+    // console.log(allProducts);
+
     useEffect(() => {
         dispatch(getProducts())
     }, [dispatch])

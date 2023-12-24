@@ -1,21 +1,58 @@
 import { composeWithDevTools } from '@redux-devtools/extension';
 import { applyMiddleware, combineReducers, legacy_createStore as createStore } from "redux";
 import { thunk } from "redux-thunk";
-import { userReducer } from './reducers/userReducer';
+import {
+    allUserReducer,
+    forgotPasswordReducer,
+    profileReducer,
+    userDetailsReducer,
+    userReducer
+} from './reducers/userReducer';
 import { cartReducer } from './reducers/cartReducer';
 import {
+    newProductReducer,
+    newReviewReducer,
     productDetailsReducer,
-    productReducer
+
+    productReducer,
+
+    productReviewReducer,
+
+    productsReducer,
+    reviewReducer
 } from './reducers/productReducer';
+import {
+    allOrdersReducer,
+    myOrdersReducer,
+    newOrderReducer,
+    orderDetailsReducer,
+    orderReducer
+} from './reducers/orderReducer';
 
 const reducer = combineReducers({
     //    user reducer 
     user: userReducer,
     // product reducer 
-    products: productReducer,
+    product: productReducer,
+    products: productsReducer,
     // get a singl product reducer 
     productDetails: productDetailsReducer,
-    cart: cartReducer
+    cart: cartReducer,
+    newProduct: newProductReducer,
+    // all orders for admin 
+    allOrders: allOrdersReducer,
+    // update & delete order by admin 
+    order: orderReducer,
+    productReviews: productReviewReducer,
+    review: reviewReducer,
+    allUsers: allUserReducer,
+    userDetails: userDetailsReducer,
+    newOrder: newOrderReducer,
+    myOrders: myOrdersReducer,
+    orderDetails: orderDetailsReducer,
+    newReview: newReviewReducer,
+    profile: profileReducer,
+    forgotPassword: forgotPasswordReducer,
 });
 
 let initialState = {

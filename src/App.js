@@ -7,13 +7,13 @@ import Products from "./components/Products/Products";
 import Login from "./components/User/Login";
 import Register from "./components/User/Register";
 import ProductsDetails from "./components/Products/ProductDetails";
-import { ToastContainer } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import store from "./store"
 import axios from "axios";
-import { loadUser } from "./actions/userAction";
+import { clearErrors, loadUser } from "./actions/userAction";
 import UserOption from "./components/Layout/UserOption";
 import Cart from "./components/Cart/Cart";
 import ProtectedRoute from "./components/Route/ProtectedRoute";
@@ -25,18 +25,21 @@ import Dashboard from "./components/Admin/Dashboard";
 import Payment from "./components/Cart/Payment";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
+import ProductList from "./components/Admin/ProductList";
 
 
 function App() {
+  const dispatch = useDispatch();
 
-  const { isAuthenticated, user } = useSelector((state) => state.user);
+  const { isAuthenticated, user, error } = useSelector((state) => state.user);
   axios.defaults.withCredentials = true;
 
   const [stripeApiKey, setStripeApiKey] = useState("");
   // const stripePromise = loadStripe(stripeApiKey);
   async function getStripeApiKey() {
-    const { data } = await axios.get("http://localhost:5000/api/v1/stripeapikey");
+    const { data, } = await axios.get("http://localhost:5000/api/v1/stripeapikey");
     setStripeApiKey(data.stripeApiKey);
+
   }
 
 
@@ -47,7 +50,14 @@ function App() {
 
   }, [])
 
-  console.log(stripeApiKey);
+  // console.log(stripeApiKey);
+  // useEffect(() => {
+  //   if (error) {
+  //     toast.error("You Should login")
+  //     dispatch(clearErrors());
+  //   }
+
+  // }, [])
 
   return (
     <>
@@ -99,11 +109,7 @@ function App() {
             </ProtectedRoute>
           }></Route> */}
 
-          <Route path="/admin/dashboard" element={
-            <ProtectedRoute>
-              <Dashboard />
-            </ProtectedRoute>
-          }></Route>
+
 
           <Route path="/process/payment" element={
             <ProtectedRoute>
@@ -115,7 +121,36 @@ function App() {
             </ProtectedRoute>
           } ></Route>
 
+          {/* admin route  */}
+          <Route
+            path="/admin/dashboard"
+            element={
+              <ProtectedRoute
+                isAuthenticated={isAuthenticated}
+                adminRoute={true}
+                isAdmin={user?.role === "admin" ? true : false}
+              >
+                <Dashboard />
+              </ProtectedRoute>
+            }
+          ></Route>
+          {/* product list  */}
+          <Route
+            path="/admin/products"
+            element={
+              <ProtectedRoute
+                isAuthenticated={isAuthenticated}
+                adminRoute={true}
+                isAdmin={user?.role === "admin" ? true : false}
+              >
+                <ProductList />
+              </ProtectedRoute>
+            }
+          ></Route>
+
+
         </Routes>
+
 
         <Footer />
 
