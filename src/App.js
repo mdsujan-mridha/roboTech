@@ -76,14 +76,29 @@ function App() {
           <Route path="/products/:trimmedKeyword" element={<Products />}> </Route>
 
           <Route path="/search" element={<Search />}></Route>
-          {/* this route will protected  */}
-          {/* <Route element={<ProtectedRoute isAuthenticated={isAuthenticated} />}>
+       
+          <Route element={<ProtectedRoute isAuthenticated={isAuthenticated} />}>
             <Route path="/cart" element={<Cart />} />
             <Route path="/account" element={<Profile />} />
             <Route path="/shipping" element={<Shipping />} />
-          </Route> */}
+            <Route path="/order/confirm" element={<ConfirmOrder />}></Route>
+            <Route>
+              {stripeApiKey && (
+                <Route
+                  path="/process/payment"
 
-          <Route path="/cart" element={
+                  element={
+                    <Elements stripe={loadStripe(stripeApiKey)} >
+                      <Payment stripeApiKey={stripeApiKey} />
+                    </Elements>
+                  }
+                >
+                </Route>
+              )}
+            </Route>
+          </Route>
+
+          {/* <Route path="/cart" element={
             <ProtectedRoute>
               <Cart />
             </ProtectedRoute>
@@ -103,16 +118,11 @@ function App() {
             <ProtectedRoute>
               <ConfirmOrder />
             </ProtectedRoute>
-          }></Route>
-          {/* <Route path="/process/payment" element={
-            <ProtectedRoute>
-              <Payment stripe={stripePromise}/>
-            </ProtectedRoute>
           }></Route> */}
 
 
 
-          <Route path="/process/payment" element={
+          {/* <Route path="/process/payment" element={
             <ProtectedRoute>
               {stripeApiKey && (
                 <Elements stripe={loadStripe(stripeApiKey)}>
@@ -120,7 +130,7 @@ function App() {
                 </Elements>
               )}
             </ProtectedRoute>
-          } ></Route>
+          } ></Route> */}
 
           {/* admin route  */}
           <Route
