@@ -32,6 +32,7 @@ const Products = () => {
     const [ratingsToggle, setRatingsToggle] = useState(true);
     const [categoryToggle, setCategoryToggle] = useState(true);
     const [currentPage, setCurrentPage] = useState(1);
+    const [searchProduct, setSearchProduct] = useState("")
 
     const {
         loading,
@@ -62,16 +63,24 @@ const Products = () => {
     const setCurrentPageNo = (e) => {
         setCurrentPage(e)
     }
-
+    //  search product 
+    const handleSearchProduct = (e) => {
+        e.preventDefault();
+        setSearchProduct(e.target.value);
+    }
 
     useEffect(() => {
         if (error) {
             toast.error(error);
             dispatch(clearErrors());
         }
-        dispatch(getProducts(trimmedKeyword, category, price,ratings))
+        dispatch(getProducts(trimmedKeyword, category, price, ratings))
     }, [dispatch, trimmedKeyword, error, category, price, ratings, currentPage])
 
+
+    const filterProduct = products.filter((product) =>
+    product.name.toLowerCase().includes(searchProduct.toLowerCase())
+)
 
     return (
         <Fragment>
@@ -88,6 +97,8 @@ const Products = () => {
                                         name="search"
                                         placeholder='Search your products'
                                         id="1"
+                                        onChange={handleSearchProduct}
+                                        value={searchProduct}
                                         className='w-full h-14 bg-transparent border-2 rounded-full outline-none px-10 text-white font-bold text-sm' />
                                     <button> <Search sx={{ color: 'orange', fontSize: '50px', marginLeft: '-70px' }} /></button>
                                 </div>
@@ -202,8 +213,8 @@ const Products = () => {
                                     {/* product div  */}
                                     <div className='w-full min-h-screen lg:w-4/5 rounded-md pb-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 px-3 lg:px-12 pt-5' style={{ backgroundColor: 'var(--primary)' }}>
                                         {
-                                            products &&
-                                            products.map((product) => (
+                                            filterProduct &&
+                                            filterProduct.map((product) => (
                                                 <ProductCard
                                                     key={product?._id}
                                                     product={product}

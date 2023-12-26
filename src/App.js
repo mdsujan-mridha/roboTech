@@ -26,6 +26,7 @@ import Payment from "./components/Cart/Payment";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 import ProductList from "./components/Admin/ProductList";
+import NewProduct from "./components/Admin/NewProduct";
 
 
 function App() {
@@ -144,6 +145,19 @@ function App() {
                 isAdmin={user?.role === "admin" ? true : false}
               >
                 <ProductList />
+              </ProtectedRoute>
+            }
+          ></Route>
+          {/* create product  */}
+          <Route
+            path="/admin/product"
+            element={
+              <ProtectedRoute
+                isAuthenticated={isAuthenticated}
+                adminRoute={true}
+                isAdmin={user?.role === "admin" ? true : false}
+              >
+                <NewProduct />
               </ProtectedRoute>
             }
           ></Route>
